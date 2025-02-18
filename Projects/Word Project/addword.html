@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add Word
+{% endblock %}
+
+{% block main %}
+<div id="center">
+<h1 style="text-align: center;">Add Word</h1>
+<form action="/addword" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control" style="width: 550px" id="word" name="word" placeholder="Word" type="text" required>
+    </div>
+    <div class="mb-3">
+        <select id="speech" name="speech" class="form-control" style="width: 550px">
+            <option value="Select Speech" selected disabled hidden>Select Speech</option>
+            <option value="noun">noun</option>
+            <option value="adjective">adjective</option>
+            <option value="verb">verb</option>
+            <option value="adverb">adverb</option>
+          </select>
+    </div>
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control" style="width: 550px" id="definition" name="definition" placeholder="Definition" type="text">
+    </div>
+    <div style="text-align: center;">
+        <button class="btn btn-primary"  type="submit">Add</button>
+    </div>
+
+    </form>
+</div>
+{% endblock %}
