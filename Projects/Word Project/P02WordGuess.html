@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Test 1 Words Test
+{% endblock %}
+
+{% block main %}
+
+<h1>Word Guess Game</h1>
+The objective of the game is to assist users in honing their vocabulary skills and becoming more familiar with a variety of words.
+<div id="center">
+<h3 style="text-align: center;"><p id="LetterGuesser"></p></h3>
+<p id="LetterStatus"></p>
+<p id="LetterTrack"></p>
+<div style="text-align: center;">
+  <button class="Letter keyboardbutton" id="A">A</button>
+  <button class="Letter keyboardbutton" id="B">B</button>
+  <button class="Letter keyboardbutton" id="C">C</button>
+  <button class="Letter keyboardbutton" id="D">D</button>
+  <button class="Letter keyboardbutton" id="E">E</button>
+  <button class="Letter keyboardbutton" id="F">F</button>
+  <button class="Letter keyboardbutton" id="G">G</button>
+  <br>
+  <button class="Letter keyboardbutton" id="H">H</button>
+  <button class="Letter keyboardbutton" id="I">I</button>
+  <button class="Letter keyboardbutton" id="J">J</button>
+  <button class="Letter keyboardbutton" id="K">K</button>
+  <button class="Letter keyboardbutton" id="L">L</button>
+  <button class="Letter keyboardbutton" id="M">M</button>
+  <button class="Letter keyboardbutton" id="N">N</button>
+  <br>
+  <button class="Letter keyboardbutton" id="O">O</button>
+  <button class="Letter keyboardbutton" id="P">P</button>
+  <button class="Letter keyboardbutton" id="Q">Q</button>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  <button class="Letter keyboardbutton" id="R">R</button>
+  <button class="Letter keyboardbutton" id="S">S</button>
+  <button class="Letter keyboardbutton" id="T">T</button>
+  <br>
+  <button class="Letter keyboardbutton" id="U">U</button>
+  <button class="Letter keyboardbutton" id="V">V</button>
+  <button class="Letter keyboardbutton" id="W">W</button>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+  <button class="Letter keyboardbutton" id="X">X</button>
+  <button class="Letter keyboardbutton" id="Y">Y</button>
+  <button class="Letter keyboardbutton" id="Z">Z</button>
+
+  <br><br>
+  <button onClick="history.go(0);" style="font-size: 24px;">Reset</button>
+</div>
+
+</div>
+<script>
+  let text = "{{ vocabulary }}"
+  const myArr = text.split("");
+  const answerArr = [];
+  text = "";
+  for (let i = 0; i < myArr.length; i++) {
+    if (answerArr.includes(myArr[i])) {
+      text += myArr[i] + " ";
+    } else if (myArr[i] == " ") {
+      text += "&nbsp" + " ";
+    } else {
+      text += "_" + " ";
+    }
+  }
+  document.getElementById("LetterGuesser").innerHTML = text;
+
+  function myFunction(myArr, answerArr) {
+  text = "";
+  j = 0;
+  for (let i = 0; i < myArr.length; i++) {
+      if (answerArr.includes(myArr[i])) {
+        text += myArr[i] + " ";
+        j = j + 1;
+      } else if(myArr[i] == " ") {
+      	text += "&nbsp" + " "
+        j = j + 1;
+      } else {
+        text += "_" + " ";
+      }
+    }
+  document.getElementById("LetterGuesser").innerHTML = text;
+  if (myArr.length == j) {
+  document.getElementById("LetterStatus").innerHTML = "Congratulations! you have successfully guessed the word!";
+  document.getElementById("LetterTrack").innerHTML = "It took you " + answerArr.length +" attempts to make the correct guess. ";
+    }
+  }
+
+  function myFunction2(LetterID) {
+    answerArr.push(LetterID);
+    myFunction(myArr,answerArr);
+    document.getElementById(LetterID).disabled = true;
+  }
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+	let Letters = document.querySelectorAll(".Letter");
+    for (let x = 0; x < Letters.length; x++) {
+    	Letters[x].addEventListener("click", function() {
+        	myFunction2(Letters[x].id);
+    	});
+    }
+  });
+</script>
+{% endblock %}
