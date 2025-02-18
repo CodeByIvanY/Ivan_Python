@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Vocabularies
+{% endblock %}
+
+{% block main %}
+<h1>GLOSSARY</h1>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Word</th>
+                <th style="text-align: center" scope="col">Speech</th>
+                <th scope="col">Definition</th>
+                <th style="text-align: center" scope="col">Update Time</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vocabulary in vocabularies %}
+                <tr>
+                    <td>{{ vocabulary.word }}</td>
+                    <td style="text-align: center">{{ vocabulary.speech }}</td>
+                    <td>{{ vocabulary.definition }}</td>
+                    <td style="text-align: center">{{ vocabulary.date }}</td>
+                    <td><form action="/remove" method="post">
+                        <input name="id" type="hidden" value = "{{ vocabulary.id }}">
+                        <input type="submit" value="Remove">
+                    </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
