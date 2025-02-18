@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Test 1 Words Test
+{% endblock %}
+
+{% block main %}
+
+<h1>Word Listening Spelling Test</h1>
+This function selects 10 words at random from the database, allowing users to test their spelling skills. Click on the speaking button to hear the word.
+
+<table>
+    <thead>
+        <tr>
+            <th scope="col" style="text-align: left">Word</th>
+            <th scope="col" style="text-align: left">Enter Your Answer</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>
+                    <p><button onclick="speak_0()">Word 1: Check to Speak</button></p>
+                    <p><button onclick="speak_1()">Word 2: Check to Speak</button></p>
+                    <p><button onclick="speak_2()">Word 3: Check to Speak</button></p>
+                    <p><button onclick="speak_3()">Word 4: Check to Speak</button></p>
+                    <p><button onclick="speak_4()">Word 5: Check to Speak</button></p>
+                    <p><button onclick="speak_5()">Word 6: Check to Speak</button></p>
+                    <p><button onclick="speak_6()">Word 7: Check to Speak</button></p>
+                    <p><button onclick="speak_7()">Word 8: Check to Speak</button></p>
+                    <p><button onclick="speak_8()">Word 9: Check to Speak</button></p>
+                    <p><button onclick="speak_9()">Word 10: Check to Speak</button></p>
+                </td>
+                <td>
+                    <form action="/P01WordTest" method="post">
+                    <p><input name="id_0" type="hidden" value = "{{ vocabularies[0].id }}">
+                    <input name="word_0" type="text" value = ""></p>
+                    <p><input name="id_1" type="hidden" value = "{{ vocabularies[1].id }}">
+                    <input name="word_1" type="text" value = ""></p>
+                    <p><input name="id_2" type="hidden" value = "{{ vocabularies[2].id }}">
+                    <input name="word_2" type="text" value = ""></p>
+                    <p><input name="id_3" type="hidden" value = "{{ vocabularies[3].id }}">
+                    <input name="word_3" type="text" value = ""></p>
+                    <p><input name="id_4" type="hidden" value = "{{ vocabularies[4].id }}">
+                    <input name="word_4" type="text" value = ""></p>
+                    <p><input name="id_5" type="hidden" value = "{{ vocabularies[5].id }}">
+                    <input name="word_5" type="text" value = ""></p>
+                    <p><input name="id_6" type="hidden" value = "{{ vocabularies[6].id }}">
+                    <input name="word_6" type="text" value = ""></p>
+                    <p><input name="id_7" type="hidden" value = "{{ vocabularies[7].id }}">
+                    <input name="word_7" type="text" value = ""></p>
+                    <p><input name="id_8" type="hidden" value = "{{ vocabularies[8].id }}">
+                    <input name="word_8" type="text" value = ""></p>
+                    <p><input name="id_9" type="hidden" value = "{{ vocabularies[9].id }}">
+                    <input name="word_9" type="text" value = ""></p>
+                </td>
+            </tr>
+    </tbody>
+</table>
+                <br>
+                <input type="submit"></button>
+</form>
+
+<script>
+    function speak_0() {
+      const text ="{{ vocabularies[0].word  }}";
+      const speech = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(speech);
+    }
+    function speak_1() {
+      const text = "{{ vocabularies[1].word  }}";
+      const speech = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(speech);
+    }
+    function speak_2() {
+      const text = "{{ vocabularies[2].word  }}";
+      const speech = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(speech);
+    }
+    function speak_3() {
+      const text = "{{ vocabularies[3].word  }}";
+      const speech = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(speech);
+    }
+    function speak_4() {
+      const text = "{{ vocabularies[4].word  }}";
+      const speech = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(speech);
+    }
+    function speak_5() {
+      const text = "{{ vocabularies[5].word  }}";
+      const speech = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(speech);
+    }
+    function speak_6() {
+      const text = "{{ vocabularies[6].word  }}";
+      const speech = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(speech);
+    }
+    function speak_7() {
+      const text = "{{ vocabularies[7].word  }}";
+      const speech = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(speech);
+    }
+    function speak_8() {
+      const text = "{{ vocabularies[8].word  }}";
+      const speech = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(speech);
+    }
+    function speak_9() {
+      const text = "{{ vocabularies[9].word  }}";
+      const speech = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(speech);
+    }
+  </script>
+
+
+{% endblock %}
