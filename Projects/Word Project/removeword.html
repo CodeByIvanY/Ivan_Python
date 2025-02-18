@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Remove Word
+{% endblock %}
+
+{% block main %}
+<div id="center">
+<h1 style="text-align: center;">Remove Word</h1>
+    <form action="/removeword" method="post">
+        <div class="mb-3">
+            <select id = "word" name = "id" autofocus class="form-control" >
+                    <option value="" selected disabled hidden>Words</option>
+                {% for wordb in wordsdb %}
+                    <option name="wordid" id="wordid" value="{{ wordb.id }}: [{{ wordb.speech }}] {{ wordb.definition }}">{{ wordb.word }}</option>
+                {% endfor %}
+            </select>
+            <div id="result"></div>
+        </div>
+        <div style="text-align: center;">
+            <button class="btn btn-primary" type="submit">Remove</button>
+        </div>
+    </form>
+</div>
+<script>
+    word.onchange = function () {
+        let text = this.value.toString();
+        let findtxt_1 = text.indexOf(":");
+        let lengthtxt_1 = text.length;
+        let resulttxt = text.substring(findtxt_1+1, lengthtxt_1);
+        result.innerText = resulttxt;
+    }
+</script>
+{% endblock %}
