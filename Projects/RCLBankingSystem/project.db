@@ -1,0 +1,29 @@
+.schema
+
+CREATE TABLE " (
+    "id" NUMERIC,
+    "Password" TEXT NOT NULL,
+    "is_deleted" BOOLEAN NOT NULL DEFAULT 0 CHECK ("is_deleted" IN (0, 1)),
+    PRIMARY KEY ("id")
+);
+
+CREATE TABLE "tb_userinfo" (
+    "Account_id" NUMERIC,
+    "First_Name" TEXT CHECK(length(First_Name) < 50),
+    "Last_Name" TEXT CHECK(length(Last_Name) < 50),
+    "Birthday" TEXT CHECK(length(Last_Name) < 50),,
+    "Address" TEXT,
+    "Gender" TEXT CHECK("Gender" IN ('M', 'F')),
+    "Contact_Number" TEXT CHECK(length(First_Name) < 20),
+    "is_deleted" BOOLEAN NOT NULL DEFAULT 0 CHECK ("is_deleted" IN (0, 1)),
+    FOREIGN KEY("Account_id") REFERENCES "tb_accounts"("id") ON DELETE CASCADE
+);
+
+CREATE TABLE "tb_transactions" (
+    "Account_id" NUMERIC,
+    "TransType" TEXT NOT NULL CHECK ("TransType" IN ('Deposit', 'Withdraw', 'TransferIn','TransferOut')),
+    "Amount" NUMBERIC(5,2) NOT NULL CHECK("Amount" != 0),
+    "DateTime" NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "is_deleted" BOOLEAN NOT NULL DEFAULT 0 CHECK ("is_deleted" IN (0, 1)),
+    FOREIGN KEY("Account_id") REFERENCES "tb_accounts"("id") ON DELETE CASCADE
+);
