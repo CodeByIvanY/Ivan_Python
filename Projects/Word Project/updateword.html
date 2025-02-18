@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Update Word
+{% endblock %}
+
+{% block main %}
+<div id="center">
+<h1 style="text-align: center;">Update Word</h1>
+<h3>Select a word you'd like to update.</h3>
+<form action="/updateword" method="post">
+    <div class="mb-3">
+        <select id = "word" name = "id" autofocus class="form-control" >
+                <option value="" selected disabled hidden>Words</option>
+            {% for wordb in wordsdb %}
+                <option name="wordid" id="wordid" value="{{ wordb.id }}: [{{ wordb.speech }}] {{ wordb.definition }}">{{ wordb.word }}</option>
+            {% endfor %}
+        </select>
+       <div id="result"></div>
+    </div>
+    <h3>Update Word</h3>
+    To change a word, enter a new word in the input field for updates. If no change is needed, leave it blank.
+    <div>
+        <input autocomplete="off" autofocus class="form-control" style="width: 550px;"id="updateword" name="updatedword" placeholder="Change word" type="text">
+    </div>
+    <h3>Update Speech</h3>
+    To change a speech, select a new speech in the option field for updates. If no change is needed, leave it blank.
+    <div class="mb-3">
+        <select id="updatedspeech" name="updatedspeech" class="form-control" style="width: 550px">
+            <option value="Select Speech" selected disabled hidden>Change Speech</option>
+            <option value="noun">noun</option>
+            <option value="adjective">adjective</option>
+            <option value="verb">verb</option>
+            <option value="adverb">adverb</option>
+          </select>
+    </div>
+    <h3>Update Definition</h3>
+    To change a definition, enter a new definition in the input field for updates. If no change is needed, leave it blank.
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control" style="width: 550px" id="updateddefinition" name="updateddefinition" placeholder="Input New Definition" type="text">
+    </div>
+    <div style="text-align: center;">
+        <button class="btn btn-primary" type="submit">Update</button>
+    </div>
+</form>
+
+</div>
+<script>
+    word.onchange = function () {
+        let text = this.value.toString();
+        let findtxt_1 = text.indexOf(":");
+        let lengthtxt_1 = text.length;
+        let resulttxt = text.substring(findtxt_1+1, lengthtxt_1);
+        result.innerText = resulttxt;
+    }
+</script>
+{% endblock %}
